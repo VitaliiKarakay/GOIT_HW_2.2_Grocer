@@ -28,18 +28,18 @@ public class CostCalculate {
         count.put("B", 0);
         count.put("C", 0);
         count.put("D", 0);
-
-        for (String buy : buys) {
-            switch (buy) {
-                case "A" -> count.put("A", count.get("A") + 1);
-                case "B" -> count.put("B", count.get("B") + 1);
-                case "C" -> count.put("C", count.get("C") + 1);
-                case "D" -> count.put("D", count.get("D") + 1);
-                default -> System.out.println("This good " + buy + " isn't from our store");
+        if (bag.length() == 0) System.out.println("Bag is empty");
+        else{
+            for (String buy : buys) {
+                switch (buy) {
+                    case "A" -> count.put("A", count.get("A") + 1);
+                    case "B" -> count.put("B", count.get("B") + 1);
+                    case "C" -> count.put("C", count.get("C") + 1);
+                    case "D" -> count.put("D", count.get("D") + 1);
+                    default -> System.out.println("This good " + buy + " isn't from our store");
+                }
             }
         }
-
-        System.out.println(buys[0]);
         return count;
     }
 
@@ -75,6 +75,10 @@ public class CostCalculate {
         }
 
         return totalCost;
+    }
+
+    public String getCost (String bag) {
+        return "Total cost: " + calculateTotalCost(bag);
     }
 }
 

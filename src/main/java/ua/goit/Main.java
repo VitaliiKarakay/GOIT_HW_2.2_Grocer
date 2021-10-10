@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CostCalculate urn = new CostCalculate();
-        double totalCost = urn.calculateTotalCost("abcdaba");
+        CostCalculate bag = new CostCalculate();
+        String totalCost = bag.getCost("AB");
         System.out.println(totalCost);
     }
 
