@@ -20,14 +20,14 @@ public class CostCalculateTest {
         count.put("C", 1);
         count.put("D", 1);
 
-//        Map<String, Integer> count2 = new HashMap<>();
-//        count.put("A", 0);
-//        count.put("B", 0);
-//        count.put("C", 0);
-//        count.put("D", 0);
+        Map<String, Integer> count2 = new HashMap<>();
+        count.put("A", 0);
+        count.put("B", 0);
+        count.put("C", 0);
+        count.put("D", 0);
 
         assertEquals(bag.splitBag("ABCD"), count);
-//        assertEquals(bag.splitBag("ABCD"), count2);
+        assertEquals(bag.splitBag(""), count2);
     }
 
     @Test
