@@ -21,10 +21,10 @@ public class CostCalculateTest {
         count.put("D", 1);
 
         Map<String, Integer> count2 = new HashMap<>();
-        count.put("A", 0);
-        count.put("B", 0);
-        count.put("C", 0);
-        count.put("D", 0);
+        count2.put("A", 0);
+        count2.put("B", 0);
+        count2.put("C", 0);
+        count2.put("D", 0);
 
         assertEquals(bag.splitBag("ABCD"), count);
         assertEquals(bag.splitBag(""), count2);
