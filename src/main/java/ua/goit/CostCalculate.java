@@ -7,10 +7,15 @@ public class CostCalculate {
     public static final Map<String, double[]> prices = new HashMap<>();
 
     static {
-        prices.put("A", new double[]{1.25, 3, 3});
-        prices.put("B", new double[]{4.25, 4.25, 4.25});
-        prices.put("C", new double[]{1, 6, 5});
-        prices.put("D", new double[]{0.75, 0.75, 0.75});
+        Product a = new Product("A", 1.25, 3, 3);
+        Product b = new Product("B", 4.25, 4.25, 4.25);
+        Product c = new Product("C", 1, 6, 5);
+        Product d = new Product("D", 0.75, 0.75, 0.75);
+
+        prices.put(a.getName(), new double[]{a.getCost(), a.getDiscountCount(), a.getDiscountPrice()});
+        prices.put(b.getName(), new double[]{b.getCost(), b.getDiscountCount(), b.getDiscountPrice()});
+        prices.put(c.getName(), new double[]{c.getCost(), c.getDiscountCount(), c.getDiscountPrice()});
+        prices.put(d.getName(), new double[]{d.getCost(), d.getDiscountCount(), d.getDiscountPrice()});
     }
 
     /*
