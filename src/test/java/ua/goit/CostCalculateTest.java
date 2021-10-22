@@ -31,7 +31,7 @@ public class CostCalculateTest {
     }
 
     @Test
-    public void calculateTotalCostTest () {
+    public void calculateTotalCostTest() {
         assertEquals("False", 13.25, bag.calculateTotalCost("ABCDABA"), 0.0);
         assertEquals(7.25, bag.calculateTotalCost("ABCD"), 0.0);
         assertEquals(0.0, bag.calculateTotalCost(""), 0.0);

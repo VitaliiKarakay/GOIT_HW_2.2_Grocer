@@ -4,18 +4,18 @@ import java.util.*;
 
 public class CostCalculate {
 
-    public static final Map<String, double[]> prices = new HashMap<>();
+    public static final Map<String, Product> prices = new HashMap<>();
 
     static {
         Product a = new Product("A", 1.25, 3, 3);
-        Product b = new Product("B", 4.25, 4.25, 4.25);
+        Product b = new Product("B", 4.25);
         Product c = new Product("C", 1, 6, 5);
-        Product d = new Product("D", 0.75, 0.75, 0.75);
+        Product d = new Product("D", 0.75);
 
-        prices.put(a.getName(), new double[]{a.getCost(), a.getDiscountCount(), a.getDiscountPrice()});
-        prices.put(b.getName(), new double[]{b.getCost(), b.getDiscountCount(), b.getDiscountPrice()});
-        prices.put(c.getName(), new double[]{c.getCost(), c.getDiscountCount(), c.getDiscountPrice()});
-        prices.put(d.getName(), new double[]{d.getCost(), d.getDiscountCount(), d.getDiscountPrice()});
+        prices.put(a.getName(), a);
+        prices.put(b.getName(), b);
+        prices.put(c.getName(), c);
+        prices.put(d.getName(), d);
     }
 
     /*
@@ -34,7 +34,7 @@ public class CostCalculate {
         count.put("C", 0);
         count.put("D", 0);
         if (bag.length() == 0) System.out.println("Bag is empty");
-        else{
+        else {
             for (String buy : buys) {
                 switch (buy) {
                     case "A" -> count.put("A", count.get("A") + 1);
@@ -53,36 +53,38 @@ public class CostCalculate {
         Map<String, Integer> count = splitBag(bag);
 
         for (Map.Entry<String, Integer> entry : count.entrySet()) {
-            double[] costs = prices.get(entry.getKey());
-
             if (entry.getKey().equals("A")) {
-                if (entry.getValue() >= costs[1]) {
-                    double div = (entry.getValue() - entry.getValue() % costs[1]) / costs[1];
-                    totalCost += div * costs[2] + (entry.getValue() % costs[1]) * costs[0];
+                if (entry.getValue() >= prices.get("A").getDiscountCount()) {
+                    double div = (entry.getValue() - entry.getValue() % prices.get("A").getDiscountCount())
+                            / prices.get("A").getDiscountCount();
+                    totalCost += div * prices.get("A").getDiscountPrice() + (entry.getValue() % prices.get("A").getDiscountCount())
+                            * prices.get("A").getPrice();
                 } else {
-                    totalCost += entry.getValue() * costs[0];
+                    totalCost += entry.getValue() * prices.get("A").getPrice();
                 }
             }
             if (entry.getKey().equals("B")) {
-                totalCost += entry.getValue() * costs[0];
+                totalCost += entry.getValue() * prices.get("B").getPrice();
             }
             if (entry.getKey().equals("C")) {
-                if (entry.getValue() >= costs[1]) {
-                    double div = (entry.getValue() - entry.getValue() % costs[1]) / costs[1];
-                    totalCost += div * costs[2] + entry.getValue() % costs[1] * costs[0];
+                if (entry.getValue() >= prices.get("C").getDiscountCount()) {
+                    double div = (entry.getValue() - entry.getValue() % prices.get("C").getDiscountCount())
+                            / prices.get("C").getDiscountCount();
+                    totalCost += div * prices.get("C").getDiscountPrice() + (entry.getValue() % prices.get("C").getDiscountCount())
+                            * prices.get("C").getPrice();
                 } else {
-                    totalCost += entry.getValue() * costs[0];
+                    totalCost += entry.getValue() * prices.get("C").getPrice();
                 }
             }
             if (entry.getKey().equals("D")) {
-                totalCost += entry.getValue() * costs[0];
+                totalCost += entry.getValue() * prices.get("D").getPrice();
             }
         }
 
         return totalCost;
     }
 
-    public String getCost (String bag) {
+    public String getCost(String bag) {
         return "Total cost: " + calculateTotalCost(bag);
     }
 }
